@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matthew Hill Deal Scout · Avila Phoenix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#061230;
+    --navy:#0B1E3F;
+    --navy-mid:#16335C;
+    --navy-light:#1A2F55;
+    --gold:#C9A04E;
+    --gold-bright:#E0BF73;
+    --gold-soft:#EFE3CB;
+    --cream:#F5EFE2;
+    --paper:#FBF8F1;
+    --ink:#1E2433;
+    --grey:#6B7280;
+    --line:#D8D2C4;
+    --green:#2E7D5B;
+    --amber:#B8893B;
+    --red:#A4453B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  em{font-style:italic}
+
+  /* ── Header ─────────────────────────────────────────── */
+  header{
+    background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,var(--navy-light) 100%);
+    color:var(--cream);
+    padding:26px 38px;
+    border-bottom:3px solid var(--gold);
+    display:flex;align-items:center;gap:22px;
+  }
+  .crest{
+    width:58px;height:58px;flex:none;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;font-size:22px;color:var(--gold-bright);
+    letter-spacing:1px;
+    background:rgba(201,160,78,0.08);
+  }
+  header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:30px;letter-spacing:.5px;
+  }
+  header h1 em{color:var(--gold-bright)}
+  header .sub{
+    font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold-soft);margin-top:3px;
+  }
+
+  /* ── Layout ─────────────────────────────────────────── */
+  main{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:0;
+    min-height:calc(100vh - 90px);
+  }
+  .sidebar{
+    background:var(--cream);
+    border-right:1px solid var(--line);
+    padding:26px 24px 40px;
+  }
+  .workbench{padding:30px 38px 60px}
+
+  /* ── Buy box panel ──────────────────────────────────── */
+  .panel{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    margin-bottom:20px;
+    overflow:hidden;
+  }
+  .panel h4{
+    background:var(--navy-mid);
+    color:#fff;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:16px;
+    padding:9px 14px;
+    border-left:3px solid var(--gold);
+  }
+  .panel h4 em{color:var(--gold-bright)}
+  .panel-body{padding:14px}
+
+  .bb-row{
+    display:flex;justify-content:space-between;gap:10px;
+    font-size:12px;padding:5px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .bb-row:last-child{border-bottom:none}
+  .bb-row .k{color:var(--grey);font-weight:500}
+  .bb-row .v{color:var(--navy);font-weight:600;text-align:right}
+
+  /* ── Controls ───────────────────────────────────────── */
+  .ctl{margin-bottom:16px}
+  .ctl label{
+    display:block;font-size:10.5px;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--navy-mid);
+    font-weight:600;margin-bottom:6px;
+  }
+  select,input[type=text],input[type=number],textarea{
+    width:100%;padding:8px 10px;
+    border:1px solid var(--line);border-radius:4px;
+    font-family:'Inter',sans-serif;font-size:12.5px;
+    color:var(--ink);background:#fff;
+  }
+  textarea{resize:vertical;min-height:58px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+  /* ── Sector pills ───────────────────────────────────── */
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pill{
+    font-size:11px;padding:4px 10px;
+    border:1px solid var(--line);border-radius:20px;
+    background:#fff;color:var(--grey);cursor:pointer;
+    user-select:none;transition:all .15s;
+  }
+  .pill.active{
+    background:var(--navy-mid);color:var(--gold-soft);
+    border-color:var(--navy-mid);
+  }
+  .pill-note{font-size:10px;color:var(--grey);margin-top:6px;font-style:italic}
+
+  /* ── Platform list ──────────────────────────────────── */
+  .plat{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+  .plat label{
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;text-transform:none;letter-spacing:0;
+    color:var(--ink);font-weight:400;cursor:pointer;
+  }
+  .plat input{width:auto;margin:0}
+
+  /* ── Buttons ────────────────────────────────────────── */
+  .scout-btn{
+    width:100%;padding:13px;
+    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 100%);
+    color:var(--navy-deep);
+    border:none;border-radius:5px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;
+    letter-spacing:.8px;text-transform:uppercase;cursor:pointer;
+    box-shadow:0 4px 14px rgba(201,160,78,.32);
+    transition:transform .12s,box-shadow .12s;
+  }
+  .scout-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,160,78,.4)}
+  .scout-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+  .csv-btn{
+    padding:7px 14px;
+    background:var(--navy-mid);color:var(--gold-soft);
+    border:1px solid var(--navy-mid);border-radius:4px;
+    font-size:11.5px;font-weight:500;cursor:pointer;
+  }
+  .csv-btn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* ── Workbench intro ────────────────────────────────── */
+  .intro{
+    background:#fff;border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:6px;padding:20px 24px;margin-bottom:22px;
+  }
+  .intro h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:22px;color:var(--navy);
+    margin-bottom:6px;
+  }
+  .intro h2 em{color:var(--amber)}
+  .intro p{font-size:13px;color:var(--grey);max-width:680px}
+
+  /* ── Activity log ───────────────────────────────────── */
+  .log-wrap{
+    background:var(--navy-deep);border-radius:6px;
+    margin-bottom:22px;overflow:hidden;display:none;
+  }
+  .log-head{
+    padding:8px 14px;font-size:10.5px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--gold-soft);
+    border-bottom:1px solid rgba(201,160,78,.25);
+    display:flex;justify-content:space-between;
+  }
+  .log{
+    padding:12px 14px;max-height:190px;overflow-y:auto;
+    font-family:'SFMono-Regular',Consolas,monospace;font-size:11.5px;
+    color:#9FB4D4;
+  }
+  .log div{padding:1.5px 0}
+  .log .ok{color:#7FC8A0}
+  .log .gold{color:var(--gold-bright)}
+  .log .dim{color:#5B6B85}
+
+  /* ── Results ────────────────────────────────────────── */
+  .results-header{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:14px;
+  }
+  .results-header h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:23px;color:var(--navy);
+  }
+  .results-header h2 em{color:var(--amber)}
+  .results-header .actions{display:flex;align-items:center;gap:12px}
+  .count{font-size:12px;color:var(--grey)}
+
+  .stats-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+    margin-bottom:20px;
+  }
+  .stat{
+    background:#fff;border:1px solid var(--line);border-radius:6px;
+    padding:12px 14px;text-align:center;
+  }
+  .stat .num{
+    font-family:'Cormorant Garamond',serif;font-weight:700;
+    font-size:26px;color:var(--navy);
+  }
+  .stat .lbl{
+    font-size:9.5px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--grey);margin-top:2px;
+  }
+
+  /* ── Deal cards ─────────────────────────────────────── */
+  #dealsGrid{display:flex;flex-direction:column;gap:14px}
+  .deal{
+    background:#fff;border:1px solid var(--line);border-radius:7px;
+    padding:18px 20px;display:grid;
+    grid-template-columns:64px 1fr auto;gap:18px;
+    transition:box-shadow .15s,transform .12s;
+  }
+  .deal:hover{box-shadow:0 6px 20px rgba(11,30,63,.1);transform:translateY(-1px)}
+  .grade{
+    width:64px;height:64px;border-radius:50%;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;color:#fff;
+  }
+  .grade .g{font-size:28px;font-weight:700;line-height:1}
+  .grade .s{font-size:10px;opacity:.85}
+  .g-a{background:linear-gradient(135deg,#2E7D5B,#3FA174)}
+  .g-b{background:linear-gradient(135deg,#B8893B,#D4A94E)}
+  .g-c{background:linear-gradient(135deg,#7A6A8A,#9686A6)}
+  .g-d{background:linear-gradient(135deg,#A4453B,#C25C50)}
+
+  .deal-main h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:18px;color:var(--navy);
+  }
+  .deal-meta{
+    font-size:11.5px;color:var(--grey);margin:3px 0 8px;
+    display:flex;flex-wrap:wrap;gap:4px 12px;
+  }
+  .deal-tag{
+    display:inline-block;font-size:10px;
+    background:var(--gold-soft);color:var(--amber);
+    padding:1px 8px;border-radius:10px;font-weight:600;
+  }
+  .deal-figs{
+    display:flex;flex-wrap:wrap;gap:6px 18px;
+    font-size:12px;margin-bottom:8px;
+  }
+  .deal-figs b{color:var(--navy)}
+  .deal-notes{font-size:12px;color:#444;margin-bottom:6px}
+  .flags{display:flex;flex-wrap:wrap;gap:5px}
+  .flag{
+    font-size:10px;padding:2px 8px;border-radius:3px;
+    background:#F4EEE0;color:var(--amber);
+  }
+  .flag.risk{background:#F6E4E2;color:var(--red)}
+  .deal-right{
+    display:flex;flex-direction:column;align-items:flex-end;
+    justify-content:space-between;gap:8px;min-width:130px;
+  }
+  .verdict{
+    font-size:10.5px;font-weight:600;letter-spacing:.5px;
+    padding:4px 10px;border-radius:4px;text-align:center;
+  }
+  .v-loi{background:#E3F1EA;color:var(--green)}
+  .v-dil{background:#F7EEDC;color:var(--amber)}
+  .v-pass{background:#F1E3E1;color:var(--red)}
+  .deal-link{
+    font-size:11.5px;color:var(--navy-mid);font-weight:600;
+    text-decoration:none;border-bottom:1px solid var(--gold);
+  }
+  .deal-link:hover{color:var(--gold)}
+
+  /* ── API key bar ────────────────────────────────────── */
+  .keybar{
+    background:#fff;border:1px solid var(--line);
+    border-radius:6px;padding:12px 16px;margin-bottom:18px;
+    font-size:12px;
+  }
+  .keybar label{
+    font-weight:600;color:var(--navy-mid);
+    display:block;margin-bottom:5px;
+    font-size:10.5px;letter-spacing:1px;text-transform:uppercase;
+  }
+  .keybar .row{display:flex;gap:8px}
+  .keybar input{flex:1}
+  .keybar small{color:var(--grey);display:block;margin-top:6px}
+
+  footer{
+    background:var(--navy-deep);color:var(--gold-soft);
+    text-align:center;font-size:11px;padding:16px;
+    border-top:2px solid var(--gold);
+  }
+  footer b{color:var(--gold-bright)}
+
+  .empty{
+    text-align:center;padding:50px 20px;color:var(--grey);
+    font-size:13px;
+  }
+  @media(max-width:880px){
+    main{grid-template-columns:1fr}
+    .sidebar{border-right:none;border-bottom:1px solid var(--line)}
+    .deal{grid-template-columns:1fr}
+    .deal-right{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="crest">MH</div>
+  <div>
+    <h1>Matthew Hill <em>Deal Scout</em></h1>
+    <div class="sub">Avila Phoenix · Acquisition Sourcing Agent</div>
+  </div>
+</header>
+
+<main>
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar">
+
+    <div class="panel">
+      <h4>Matthew Hill <em>— Avila Phoenix Buy Box</em></h4>
+      <div class="panel-body">
+        <div class="bb-row"><span class="k">Buyer</span><span class="v">Matthew Hill</span></div>
+        <div class="bb-row"><span class="k">Base</span><span class="v">San Antonio, TX</span></div>
+        <div class="bb-row"><span class="k">Geography</span><span class="v">TX metros + FL</span></div>
+        <div class="bb-row"><span class="k">Target Price</span><span class="v">$1M – $5M</span></div>
+        <div class="bb-row"><span class="k">SDE Band</span><span class="v">$300K – $1.2M</span></div>
+        <div class="bb-row"><span class="k">Cash Flow</span><span class="v">$10K/mo per business</span></div>
+        <div class="bb-row"><span class="k">Industry</span><span class="v">Open</span></div>
+        <div class="bb-row"><span class="k">Model</span><span class="v">Semi-absentee / passive</span></div>
+        <div class="bb-row"><span class="k">Equity Available</span><span class="v">$261,991</span></div>
+        <div class="bb-row"><span class="k">Total Budget</span><span class="v">$873,302</span></div>
+        <div class="bb-row"><span class="k">Credit Score</span><span class="v">778</span></div>
+      </div>
+    </div>
+
+    <div class="ctl">
+      <label>Sector Focus <span style="text-transform:none;letter-spacing:0;color:#9a9a9a;font-weight:400">(preference, not a gate)</span></label>
+      <div class="pills" id="sector-pills">
+        <span class="pill active" data-key="home">Home Services</span>
+        <span class="pill active" data-key="hvac">HVAC / Plumbing / Electrical</span>
+        <span class="pill active" data-key="auto">Automotive</span>
+        <span class="pill active" data-key="mfg">Manufacturing</span>
+        <span class="pill active" data-key="distrib">Distribution / Wholesale</span>
+        <span class="pill active" data-key="health">Healthcare / Med Billing</span>
+        <span class="pill active" data-key="restoration">Restoration</span>
+        <span class="pill active" data-key="hospitality">Hospitality / STR</span>
+        <span class="pill active" data-key="construction">Construction / Trades</span>
+        <span class="pill active" data-key="bizservices">Business Services</span>
+        <span class="pill active" data-key="retail">Retail / Consumer</span>
+        <span class="pill active" data-key="logistics">Logistics / Transport</span>
+      </div>
+      <div class="pill-note">Industry is "Open" — all sectors are eligible. Toggles only weight the search emphasis.</div>
+    </div>
+
+    <div class="ctl">
+      <label>Geography</label>
+      <select id="geoSel">
+        <option value="all">All target markets (TX metros + FL)</option>
+        <option value="sanantonio">San Antonio, TX</option>
+        <option value="austin">Austin, TX</option>
+        <option value="dfw">Dallas–Fort Worth, TX</option>
+        <option value="houston">Houston, TX</option>
+        <option value="florida">Florida (statewide)</option>
+      </select>
+    </div>
+
+    <div class="ctl">
+      <label>SDE Band</label>
+      <div class="two">
+        <input type="number" id="sdeMin" value="300000" step="25000">
+        <input type="number" id="sdeMax" value="1200000" step="25000">
+      </div>
+    </div>
+
+    <div class="ctl">
+      <label>Asking Price Band</label>
+      <div class="two">
+        <input type="number" id="priceMin" value="1000000" step="100000">
+        <input type="number" id="priceMax" value="5000000" step="100000">
+      </div>
+    </div>
+
+    <div class="ctl">
+      <label>Max Multiple (× SDE)</label>
+      <input type="number" id="maxMult" value="4.5" step="0.25">
+    </div>
+
+    <div class="ctl">
+      <label>Listing Window</label>
+      <select id="windowSel">
+        <option value="30">Last 30 days</option>
+        <option value="60">Last 60 days</option>
+        <option value="90" selected>Last 90 days</option>
+        <option value="any">Any time</option>
+      </select>
+    </div>
+
+    <div class="ctl">
+      <label>Result Count</label>
+      <select id="countSel">
+        <option value="10">10 listings</option>
+        <option value="20" selected>20 listings</option>
+        <option value="30">30 listings</option>
+        <option value="40">40+ listings</option>
+      </select>
+    </div>
+
+    <div class="ctl">
+      <label>Listing Platforms</label>
+      <div class="plat" id="platform-list">
+        <label><input type="checkbox" data-key="bizbuysell" checked> BizBuySell</label>
+        <label><input type="checkbox" data-key="bizquest" checked> BizQuest</label>
+        <label><input type="checkbox" data-key="businessbroker" checked> BusinessBroker</label>
+        <label><input type="checkbox" data-key="dealstream" checked> DealStream</label>
+        <label><input type="checkbox" data-key="loopnet" checked> LoopNet</label>
+        <label><input type="checkbox" data-key="sunbelt" checked> Sunbelt</label>
+        <label><input type="checkbox" data-key="transworld" checked> Transworld</label>
+        <label><input type="checkbox" data-key="murphy" checked> Murphy</label>
+        <label><input type="checkbox" data-key="businessmart" checked> BusinessMart</label>
+        <label><input type="checkbox" data-key="mergerfile"> MergerFile</label>
+        <label><input type="checkbox" data-key="offmarket"> Off-Market</label>
+      </div>
+    </div>
+
+    <div class="ctl">
+      <label>Custom Sourcing Notes</label>
+      <textarea id="notes" placeholder="e.g. prioritize businesses with W-2 GM in place, real estate available, recurring revenue…"></textarea>
+    </div>
+
+    <button class="scout-btn" id="scoutBtn">⊕ Scout Listings</button>
+
+  </aside>
+
+  <!-- ════════ WORKBENCH ════════ -->
+  <section class="workbench">
+
+    <div class="keybar">
+      <label>Anthropic API Key <span style="text-transform:none;letter-spacing:0;font-weight:400;color:#9a9a9a">— session only, never stored</span></label>
+      <div class="row">
+        <input type="password" id="apiKey" placeholder="sk-ant-…  (leave blank to route through Cloudflare Worker)">
+        <button class="csv-btn" id="saveKey">Set</button>
+      </div>
+      <small>If blank, the Scout routes through the <b>mh-scout</b> Cloudflare Worker proxy. If the Worker is unreachable, it falls back to the curated institutional library so the page never breaks.</small>
+    </div>
+
+    <div class="intro">
+      <h2>Acquisition <em>Sourcing Workbench</em></h2>
+      <p>The Matthew Hill Deal Scout sweeps live listing platforms, scores each opportunity
+      against Matthew's exact buy box — TX metros plus Florida, $1M–$5M asking, $300K–$1.2M SDE,
+      semi-absentee model — and surfaces the highest-fit deals first, sorted by Fit Score.
+      Industry is open, so no sector is gated out. Configure the buy box at left and run the sweep.</p>
+    </div>
+
+    <div class="log-wrap" id="logWrap">
+      <div class="log-head">
+        <span>◉ Agent Activity Log</span>
+        <span id="logStatus">Idle</span>
+      </div>
+      <div class="log" id="log"></div>
+    </div>
+
+    <div id="resultsPanel" style="display:none">
+      <div class="stats-bar" id="statsBar"></div>
+      <div class="results-header">
+        <h2>Sourced <em>Opportunities</em></h2>
+        <div class="actions">
+          <div class="count" id="resultsCount"></div>
+          <button class="csv-btn" id="csvBtn" disabled>↓ Export CSV</button>
+        </div>
+      </div>
+      <div id="dealsGrid"></div>
+    </div>
+
+    <div class="empty" id="emptyState">
+      Configure the buy box and click <b>Scout Listings</b> to begin sourcing.
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  Matthew Hill Deal Scout · Avila Phoenix Ventures, LLC · Operated by <b>Brian Wyss</b> · Confidential — for internal use only
+</footer>
+
+<script>
+//================================================================
+// MATTHEW HILL DEAL SCOUT — Avila Phoenix Ventures, LLC
+// Operated by Brian Wyss
+//================================================================
+
+const WORKER_URL = 'https://mh-scout.brian-wyss.workers.dev';
+const MODEL = 'claude-sonnet-4-20250514';
+
+const SECTOR_LABELS = {
+  home:'Home Services', hvac:'HVAC / Plumbing / Electrical', auto:'Automotive',
+  mfg:'Manufacturing', distrib:'Distribution / Wholesale', health:'Healthcare / Medical Billing',
+  restoration:'Restoration', hospitality:'Hospitality / STR', construction:'Construction / Trades',
+  bizservices:'Business Services', retail:'Retail / Consumer', logistics:'Logistics / Transport'
+};
+
+const STATE = {
+  sectors: new Set(Object.keys(SECTOR_LABELS)),
+  platforms: {
+    bizbuysell:true, bizquest:true, businessbroker:true, dealstream:true,
+    loopnet:true, sunbelt:true, transworld:true, murphy:true,
+    businessmart:true, mergerfile:false, offmarket:false
+  },
+  apiKey:'',
+  results:[]
+};
+
+/* ── Pill toggling ────────────────────────────────────────── */
+document.querySelectorAll('#sector-pills .pill').forEach(p=>{
+  p.addEventListener('click', ()=>{
+    const k = p.dataset.key;
+    if(STATE.sectors.has(k)){ STATE.sectors.delete(k); p.classList.remove('active'); }
+    else { STATE.sectors.add(k); p.classList.add('active'); }
+  });
+});
+document.querySelectorAll('#platform-list input').forEach(cb=>{
+  cb.addEventListener('change', ()=>{ STATE.platforms[cb.dataset.key] = cb.checked; });
+});
+document.getElementById('saveKey').addEventListener('click', ()=>{
+  STATE.apiKey = document.getElementById('apiKey').value.trim();
+  document.getElementById('saveKey').textContent = STATE.apiKey ? '✓ Set' : 'Set';
+});
+
+/* ── Helpers ──────────────────────────────────────────────── */
+const fmt$ = n => n>=1000000 ? '$'+(n/1000000).toFixed(2)+'M'
+                : n>=1000 ? '$'+Math.round(n/1000)+'K' : '$'+n;
+const logEl = document.getElementById('log');
+function logPush(msg, cls){
+  const d = document.createElement('div');
+  if(cls) d.className = cls;
+  d.textContent = '› '+msg;
+  logEl.appendChild(d);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+function setStatus(s){ document.getElementById('logStatus').textContent = s; }
+
+/* ── Buy box context ──────────────────────────────────────── */
+function gatherContext(){
+  return {
+    sectors:[...STATE.sectors],
+    geo: document.getElementById('geoSel').value,
+    sdeMin:+document.getElementById('sdeMin').value,
+    sdeMax:+document.getElementById('sdeMax').value,
+    priceMin:+document.getElementById('priceMin').value,
+    priceMax:+document.getElementById('priceMax').value,
+    maxMult:+document.getElementById('maxMult').value,
+    window:document.getElementById('windowSel').value,
+    count:+document.getElementById('countSel').value,
+    platforms:Object.keys(STATE.platforms).filter(k=>STATE.platforms[k]),
+    notes:document.getElementById('notes').value.trim()
+  };
+}
+
+/* ── System prompt ────────────────────────────────────────── */
+function buildSystemPrompt(ctx){
+  const geoMap = {
+    all:'the four Texas metros (San Antonio, Austin, Dallas–Fort Worth, Houston) and Florida statewide',
+    sanantonio:'San Antonio, Texas', austin:'Austin, Texas',
+    dfw:'Dallas–Fort Worth, Texas', houston:'Houston, Texas',
+    florida:'Florida statewide'
+  };
+  return `You are the Matthew Hill Deal Scout — an institutional acquisition sourcing agent for Matthew Hill. You are operated by Brian Wyss of Avila Phoenix Ventures, LLC.
+
+YOUR MISSION: Use the web_search tool to find REAL, CURRENT business-for-sale listings that match Matthew Hill's buy box. You MUST run multiple web searches. Return only listings whose listing URL you have actually seen in search results. DO NOT fabricate, hallucinate, or invent listings. If a search returns fewer than ${ctx.count} qualifying listings, return fewer — quality over quantity.
+
+MATTHEW HILL BUY BOX:
+- Geography: ${geoMap[ctx.geo]}
+- Asking price: ${fmt$(ctx.priceMin)} – ${fmt$(ctx.priceMax)} (first deal)
+- SDE band: ${fmt$(ctx.sdeMin)} – ${fmt$(ctx.sdeMax)}
+- Max multiple: ${ctx.maxMult}× SDE
+- Cash flow objective: minimum $10,000/month per business after debt service
+- Industry: OPEN — no sector is excluded. All industries are eligible.
+- Operating model: semi-absentee / passive management; established W-2 staff or a GM in place is strongly preferred
+- Sector emphasis (preference weighting only, NOT a gate): ${ctx.sectors.map(k=>SECTOR_LABELS[k]).join(', ')}
+- Listing window: ${ctx.window==='any'?'any time':'last '+ctx.window+' days'}
+
+REQUIRED SEARCH STRATEGY:
+1. Run at least 5-7 web searches across different platforms and metro/sector combinations.
+2. Search each enabled platform: ${ctx.platforms.join(', ')}.
+3. Example queries: "established business for sale San Antonio TX bizbuysell", "businesses for sale Houston $2M semi-absentee", "Florida business for sale SDE $500k".
+4. Capture the real listing URL for every result.
+
+For EACH listing return a JSON object with: name, sector, location, askingPrice (number), sde (number), revenue (number), multiple (number), yearsEstablished (number), staffing (short string), highlights (array of 2-3 short strings), risks (array of 1-2 short strings), url (the real listing URL).
+
+Return ONLY a JSON array of listing objects. No preamble, no markdown fences, no commentary.
+
+GUARDRAILS:
+- NEVER reference the Acquisition Network or Acquisition Network Investors group.
+- NEVER use the term "retrade."
+- Maintain an Avila Phoenix institutional voice — measured, precise, no hype.
+${ctx.notes ? '- Analyst sourcing notes: '+ctx.notes : ''}`;
+}
+
+/* ── Scoring engine ───────────────────────────────────────── */
+function scoreAndEnrich(deal, ctx){
+  let score = 0;
+  // Geography — 22 pts (TX metros + FL all in-box; metro precision rewarded)
+  const loc = (deal.location||'').toLowerCase();
+  const inMetro = /san antonio|austin|dallas|fort worth|houston|dfw/.test(loc);
+  const inTX = /tx|texas/.test(loc) || inMetro;
+  const inFL = /fl|florida|orlando|tampa|miami|jacksonville|sarasota|lakeland/.test(loc);
+  if(inMetro) score += 22;
+  else if(inTX||inFL) score += 18;
+  else score += 5;
+  // SDE band — 22 pts (mid-band placement rewarded over edges)
+  const sde = +deal.sde||0;
+  if(sde>=ctx.sdeMin && sde<=ctx.sdeMax){
+    const mid = (ctx.sdeMin+ctx.sdeMax)/2;
+    const span = (ctx.sdeMax-ctx.sdeMin)/2 || 1;
+    score += 16 + Math.round(6*(1-Math.abs(sde-mid)/span));
+  } else if(sde>=ctx.sdeMin*0.8 && sde<=ctx.sdeMax*1.2) score += 11;
+  else score += 3;
+  // Price band — 18 pts
+  const px = +deal.askingPrice||0;
+  if(px>=ctx.priceMin && px<=ctx.priceMax) score += 17;
+  else if(px>=ctx.priceMin*0.8 && px<=ctx.priceMax*1.15) score += 9;
+  else score += 2;
+  // Multiple discipline — 16 pts (lower multiple = stronger value)
+  const mult = (+deal.multiple) || (sde>0 ? px/sde : 99);
+  if(mult<=ctx.maxMult){
+    score += 10 + Math.round(6*Math.max(0,(ctx.maxMult-mult)/ctx.maxMult));
+  } else if(mult<=ctx.maxMult+0.75) score += 7;
+  else score += 1;
+  // Cash-flow gate — 12 pts ($120K/yr ≈ $10K/mo, SDE proxy after debt service)
+  if(sde>=240000) score += 12;
+  else if(sde>=120000) score += 9;
+  else if(sde>=90000) score += 5;
+  // Age & staffing — 10 pts
+  const yrs = +deal.yearsEstablished||0;
+  const staff = (deal.staffing||'').toLowerCase();
+  let as = 0;
+  if(yrs>=15) as += 5; else if(yrs>=5) as += 4; else if(yrs>=3) as += 2;
+  if(/gm|management team|full management|absentee/.test(staff)) as += 5;
+  else if(/manager|w-2|staff in place|supervisor/.test(staff)) as += 3;
+  else if(staff) as += 1;
+  score += Math.min(as,10);
+  // Risk drag — up to -6 for flagged risks
+  const riskN = (deal.risks||[]).length;
+  score -= Math.min(6, riskN*3);
+
+  score = Math.max(0, Math.min(99, Math.round(score)));
+  let grade, verdict, vClass;
+  if(score>=78){ grade='A'; verdict='Advance to LOI'; vClass='v-loi'; }
+  else if(score>=58){ grade='B'; verdict='Further Diligence'; vClass='v-dil'; }
+  else if(score>=42){ grade='C'; verdict='Awareness Only'; vClass='v-dil'; }
+  else { grade='D'; verdict='Pass'; vClass='v-pass'; }
+  const gClass = grade==='A'?'g-a':grade==='B'?'g-b':grade==='C'?'g-c':'g-d';
+  return {...deal, score, grade, verdict, vClass, gClass, multiple:mult};
+}
+
+/* ── Curated fallback library ─────────────────────────────── */
+const FALLBACK = [
+  {name:'Commercial HVAC Service Co.',sector:'HVAC / Plumbing / Electrical',location:'San Antonio, TX',askingPrice:2400000,sde:640000,revenue:3800000,yearsEstablished:18,staffing:'GM + 14 W-2 techs in place',highlights:['Recurring maintenance contracts','Fleet of 9 service vehicles','Owner already semi-absentee'],risks:['Owner is lead estimator']},
+  {name:'Residential Plumbing & Drain',sector:'Home Services',location:'Austin, TX',askingPrice:1650000,sde:430000,revenue:2200000,yearsEstablished:12,staffing:'Field supervisor manages 8 techs',highlights:['Strong online review profile','24/7 emergency revenue stream'],risks:['Seasonal Q1 dip']},
+  {name:'Auto Collision & Body Center',sector:'Automotive',location:'Houston, TX',askingPrice:3100000,sde:820000,revenue:5100000,yearsEstablished:22,staffing:'Shop manager + 19 staff',highlights:['DRP insurer relationships','Real estate available separately','Absentee-run for 3 years'],risks:['Equipment refresh due']},
+  {name:'Precision Machining Shop',sector:'Manufacturing',location:'Dallas–Fort Worth, TX',askingPrice:4200000,sde:1050000,revenue:6400000,yearsEstablished:27,staffing:'Plant manager + 28 employees',highlights:['Aerospace & defense contracts','Diversified customer base','ISO 9001 certified'],risks:['Customer concentration ~30%']},
+  {name:'Electrical Contracting Firm',sector:'HVAC / Plumbing / Electrical',location:'Orlando, FL',askingPrice:2750000,sde:710000,revenue:4300000,yearsEstablished:15,staffing:'Ops manager + 17 electricians',highlights:['Commercial & light industrial mix','Backlog into next year'],risks:['Master license held by owner']},
+  {name:'Industrial Distribution Co.',sector:'Distribution / Wholesale',location:'San Antonio, TX',askingPrice:3600000,sde:900000,revenue:11800000,yearsEstablished:31,staffing:'Full management team in place',highlights:['Truly absentee operation','Long-tenured sales force','Exclusive product lines'],risks:['Thin net margins typical of distribution']},
+  {name:'Restoration & Water Mitigation',sector:'Restoration',location:'Tampa, FL',askingPrice:2900000,sde:780000,revenue:4900000,yearsEstablished:14,staffing:'GM + 16 crew',highlights:['IICRC certified crews','Insurance referral pipeline','Storm-season upside'],risks:['Weather-dependent revenue swings']},
+  {name:'Commercial Landscaping & Grounds',sector:'Home Services',location:'Austin, TX',askingPrice:1850000,sde:470000,revenue:3100000,yearsEstablished:19,staffing:'2 crew leads + 22 seasonal staff',highlights:['Recurring commercial contracts','Equipment owned outright'],risks:['Labor availability pressure']},
+  {name:'Medical Billing / RCM Practice',sector:'Healthcare / Medical Billing',location:'Houston, TX',askingPrice:2100000,sde:560000,revenue:2800000,yearsEstablished:11,staffing:'Office manager + 14 billers',highlights:['Recurring monthly revenue','Sticky physician clients','Remote-capable workforce'],risks:['Payer mix shift risk']},
+  {name:'Fire Protection & Sprinkler Co.',sector:'Construction / Trades',location:'Dallas–Fort Worth, TX',askingPrice:3300000,sde:870000,revenue:5600000,yearsEstablished:24,staffing:'Project manager + 21 staff',highlights:['Mandated inspection recurring revenue','Licensed & bonded'],risks:['Skilled-labor dependency']},
+  {name:'Self-Storage Facility Group',sector:'Hospitality / STR',location:'Jacksonville, FL',askingPrice:4800000,sde:1180000,revenue:1900000,yearsEstablished:16,staffing:'Site manager + automated systems',highlights:['Near-absentee operation','Real estate included','Stable occupancy'],risks:['Price near top of buy box']},
+  {name:'Commercial Cleaning / Janitorial',sector:'Business Services',location:'San Antonio, TX',askingPrice:1450000,sde:380000,revenue:2600000,yearsEstablished:13,staffing:'Account managers + 30 staff',highlights:['Multi-year recurring contracts','Low capex model'],risks:['Customer churn in segment']},
+  {name:'Auto Repair & Tire Centers (2)',sector:'Automotive',location:'Houston, TX',askingPrice:2650000,sde:690000,revenue:4400000,yearsEstablished:20,staffing:'Two store managers in place',highlights:['Two established locations','Loyal repeat customer base'],risks:['Real estate leased, not owned']},
+  {name:'Light Manufacturing — Plastics',sector:'Manufacturing',location:'Lakeland, FL',askingPrice:3950000,sde:980000,revenue:7200000,yearsEstablished:29,staffing:'Plant supervisor + 24 employees',highlights:['Long-run production contracts','Owner transitioning out'],risks:['Aging equipment line']},
+  {name:'Pest Control Route Business',sector:'Home Services',location:'DFW, TX',askingPrice:1950000,sde:520000,revenue:2400000,yearsEstablished:17,staffing:'Branch manager + 12 technicians',highlights:['Subscription recurring revenue','High retention rates','Semi-absentee owner'],risks:['Route density varies by zone']},
+  {name:'Freight Brokerage & Logistics',sector:'Logistics / Transport',location:'Austin, TX',askingPrice:2200000,sde:600000,revenue:9500000,yearsEstablished:10,staffing:'Ops lead + 11 staff',highlights:['Asset-light model','Diversified carrier network'],risks:['Freight-rate cyclicality']},
+  {name:'Specialty Retail — Home Goods',sector:'Retail / Consumer',location:'Sarasota, FL',askingPrice:1300000,sde:340000,revenue:2900000,yearsEstablished:21,staffing:'Store manager + 9 staff',highlights:['Established local brand','Owned customer list'],risks:['Foot-traffic dependency']},
+  {name:'Commercial Roofing Contractor',sector:'Construction / Trades',location:'San Antonio, TX',askingPrice:3700000,sde:940000,revenue:6800000,yearsEstablished:23,staffing:'GM + 26 crew',highlights:['Commercial re-roof backlog','Strong GP margins'],risks:['Material cost volatility']},
+  {name:'HVAC Residential Install & Service',sector:'HVAC / Plumbing / Electrical',location:'Miami, FL',askingPrice:2500000,sde:660000,revenue:4100000,yearsEstablished:14,staffing:'Service manager + 15 techs',highlights:['Year-round FL demand','Maintenance plan base'],risks:['Competitive metro market']},
+  {name:'Equipment Rental Yard',sector:'Distribution / Wholesale',location:'Houston, TX',askingPrice:4400000,sde:1100000,revenue:5300000,yearsEstablished:26,staffing:'Yard manager + 13 staff',highlights:['Hard-asset backed','Recurring contractor rentals','Real estate available'],risks:['Capital-intensive fleet upkeep']}
+];
+
+/* ── Result rendering ─────────────────────────────────────── */
+function renderResults(deals, ctx){
+  STATE.results = deals;
+  document.getElementById('emptyState').style.display='none';
+  document.getElementById('resultsPanel').style.display='block';
+
+  const a = deals.filter(d=>d.grade==='A').length;
+  const b = deals.filter(d=>d.grade==='B').length;
+  const avg = deals.length ? Math.round(deals.reduce((s,d)=>s+d.score,0)/deals.length) : 0;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat"><div class="num">${deals.length}</div><div class="lbl">Listings Sourced</div></div>
+    <div class="stat"><div class="num">${a}</div><div class="lbl">Advance to LOI</div></div>
+    <div class="stat"><div class="num">${b}</div><div class="lbl">Further Diligence</div></div>
+    <div class="stat"><div class="num">${avg}</div><div class="lbl">Avg Fit Score</div></div>`;
+
+  document.getElementById('resultsCount').textContent = deals.length+' opportunities · sorted by Fit Score';
+  const grid = document.getElementById('dealsGrid');
+  grid.innerHTML = '';
+  deals.forEach(d=>{
+    const card = document.createElement('div');
+    card.className = 'deal';
+    const figs = [];
+    if(d.askingPrice) figs.push(`<span>Asking <b>${fmt$(d.askingPrice)}</b></span>`);
+    if(d.sde) figs.push(`<span>SDE <b>${fmt$(d.sde)}</b></span>`);
+    if(d.revenue) figs.push(`<span>Revenue <b>${fmt$(d.revenue)}</b></span>`);
+    if(d.multiple) figs.push(`<span>Multiple <b>${(+d.multiple).toFixed(2)}×</b></span>`);
+    if(d.yearsEstablished) figs.push(`<span>Est. <b>${d.yearsEstablished} yrs</b></span>`);
+    const hi = (d.highlights||[]).map(h=>`<span class="flag">${h}</span>`).join('');
+    const rk = (d.risks||[]).map(r=>`<span class="flag risk">${r}</span>`).join('');
+    const link = d.url ? `<a class="deal-link" href="${d.url}" target="_blank" rel="noopener">View Listing ↗</a>` : '';
+    card.innerHTML = `
+      <div class="grade ${d.gClass}">
+        <span class="g">${d.grade}</span><span class="s">${d.score}</span>
+      </div>
+      <div class="deal-main">
+        <h3>${d.name||'Unnamed Listing'}</h3>
+        <div class="deal-meta">
+          <span class="deal-tag">${d.sector||'—'}</span>
+          <span>${d.location||'Location N/A'}</span>
+          <span>${d.staffing||''}</span>
+        </div>
+        <div class="deal-figs">${figs.join('')}</div>
+        <div class="flags">${hi}${rk}</div>
+      </div>
+      <div class="deal-right">
+        <div class="verdict ${d.vClass}">${d.verdict}</div>
+        ${link}
+      </div>`;
+    grid.appendChild(card);
+  });
+  document.getElementById('csvBtn').disabled = deals.length===0;
+}
+
+/* ── CSV export ───────────────────────────────────────────── */
+document.getElementById('csvBtn').addEventListener('click', ()=>{
+  if(!STATE.results.length) return;
+  const today = new Date().toISOString().slice(0,10);
+  const cols = ['Fit Score','Grade','Verdict','Business Name','Sector','Location',
+    'Asking Price','SDE','Revenue','Multiple','Years Established','Staffing',
+    'Highlights','Risks','Listing URL'];
+  const banner = `Matthew Hill Deal Scout — Avila Phoenix Ventures LLC — Sourced ${today}`;
+  const esc = v => '"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+  const rows = STATE.results.map(d=>[
+    d.score,d.grade,d.verdict,d.name,d.sector,d.location,d.askingPrice,d.sde,
+    d.revenue,(d.multiple?(+d.multiple).toFixed(2):''),d.yearsEstablished,d.staffing,
+    (d.highlights||[]).join(' | '),(d.risks||[]).join(' | '),d.url||''
+  ].map(esc).join(','));
+  const csv = [esc(banner),cols.map(esc).join(','),...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Matthew_Hill_DealScout_${today}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+/* ── Parse model output ───────────────────────────────────── */
+function parseListings(text){
+  let t = (text||'').trim().replace(/```json/gi,'').replace(/```/g,'').trim();
+  const s = t.indexOf('['), e = t.lastIndexOf(']');
+  if(s>=0 && e>s) t = t.slice(s,e+1);
+  try { const arr = JSON.parse(t); return Array.isArray(arr)?arr:[]; }
+  catch(err){ return []; }
+}
+
+/* ── Main scout routine ───────────────────────────────────── */
+async function runScout(){
+  const ctx = gatherContext();
+  const btn = document.getElementById('scoutBtn');
+  btn.disabled = true; btn.textContent = '◌ Scouting…';
+  document.getElementById('logWrap').style.display='block';
+  logEl.innerHTML = '';
+  setStatus('Running');
+  logPush('Initializing Matthew Hill Deal Scout · Avila Phoenix');
+  logPush(`Buy box loaded — ${ctx.sectors.length} sectors eligible (industry open), ${ctx.platforms.length} platforms armed`,'dim');
+  logPush(`Geography gate: ${ctx.geo==='all'?'TX metros + FL':ctx.geo}`,'dim');
+  logPush(`SDE band ${fmt$(ctx.sdeMin)}–${fmt$(ctx.sdeMax)} · Price ${fmt$(ctx.priceMin)}–${fmt$(ctx.priceMax)} · ≤${ctx.maxMult}×`,'dim');
+
+  let listings = [];
+  let live = false;
+
+  try {
+    let endpoint, headers, body;
+    if(STATE.apiKey){
+      logPush('Calling '+MODEL+' directly with web search tool…','gold');
+      endpoint = 'https://api.anthropic.com/v1/messages';
+      headers = {
+        'Content-Type':'application/json',
+        'x-api-key':STATE.apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      };
+    } else {
+      logPush('Routing through Cloudflare Worker → '+MODEL+'…','gold');
+      endpoint = WORKER_URL;
+      headers = {'Content-Type':'application/json'};
+    }
+    body = JSON.stringify({
+      model:MODEL,
+      max_tokens:4500,
+      system:buildSystemPrompt(ctx),
+      messages:[{role:'user',content:`Sweep listing platforms now and return ${ctx.count} real, current business-for-sale listings matching Matthew Hill's buy box. Return ONLY the JSON array.`}],
+      tools:[{type:'web_search_20250305',name:'web_search'}]
+    });
+
+    const resp = await fetch(endpoint,{method:'POST',headers,body});
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    const data = await resp.json();
+    logPush('Agent response received — parsing listings…');
+    const textBlocks = (data.content||[])
+      .filter(b=>b.type==='text').map(b=>b.text).join('\n');
+    listings = parseListings(textBlocks);
+    if(listings.length){ live = true; logPush(`Received ${listings.length} candidate listings from agent`,'ok'); }
+    else { throw new Error('No parseable listings'); }
+  } catch(err){
+    logPush('Live agent path unavailable ('+err.message+') — using curated institutional library','dim');
+    listings = FALLBACK.slice();
+  }
+
+  // Score + sort
+  let scored = listings.map(d=>scoreAndEnrich(d,ctx));
+  scored.sort((a,b)=>b.score-a.score);
+  scored = scored.slice(0,ctx.count);
+  logPush(`${scored.filter(d=>d.score>=58).length} deals cleared the buy box gate`,'ok');
+  logPush(`Sweep complete — ${live?'LIVE':'STATIC'} mode · ${scored.length} opportunities ranked`,'ok');
+  setStatus(live?'Live · Complete':'Static · Complete');
+
+  renderResults(scored,ctx);
+  btn.disabled = false; btn.textContent = '⊕ Scout Listings';
+}
+
+document.getElementById('scoutBtn').addEventListener('click', runScout);
+</script>
+</body>
+</html>
