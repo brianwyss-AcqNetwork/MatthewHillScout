@@ -28,7 +28,7 @@ Because industry is open, the sector toggles in the sidebar act as **search-emph
 
 **Backend** — Cloudflare Worker (`worker.js`) deployed at `mh-scout.wyssbk.workers.dev`. The Worker holds the Anthropic API key as an encrypted secret and forwards browser requests to `https://api.anthropic.com/v1/messages`. The browser never sees the key. A session-only API key field is also provided for direct browser calls.
 
-**Agent** — `claude-sonnet-4-20250514` with the `web_search_20250305` tool enabled. The system prompt enforces Matthew's exact buy box, an Avila Phoenix institutional voice, and explicit guardrails.
+**Agent** — `claude-sonnet-4-6` with the `web_search_20250305` tool enabled. The system prompt enforces Matthew's exact buy box, an Avila Phoenix institutional voice, and explicit guardrails.
 
 **Fallback** — If the Worker is unreachable or returns a non-200 status, the Scout transparently falls back to a curated 20-deal institutional library across all sectors and target markets, so the page never breaks.
 
@@ -83,7 +83,7 @@ Live URL: `https://<your-username>.github.io/matthewhill-deal-scout/`
 ### 3. Test
 
 Open the GitHub Pages URL, click **Scout Listings**. The activity log should show:
-- `Routing through Cloudflare Worker → claude-sonnet-4-20250514…`
+- `Routing through Cloudflare Worker → claude-sonnet-4-6…`
 - `Received N candidate listings from agent`
 - `N deals cleared the buy box gate`
 
