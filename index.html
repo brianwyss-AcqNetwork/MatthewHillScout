@@ -828,7 +828,15 @@ async function runScout(){
     });
 
     const resp = await fetch(endpoint,{method:'POST',headers,body});
-    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    if(!resp.ok) {
+      let detail = '';
+      try {
+        const errBody = await resp.json();
+        detail = ' · ' + (errBody.upstreamStatus ? 'Anthropic '+errBody.upstreamStatus+': ' : '')
+               + (errBody.upstreamBody || errBody.error || JSON.stringify(errBody)).slice(0,260);
+      } catch(_) {}
+      throw new Error('HTTP '+resp.status+detail);
+    }
     const data = await resp.json();
     logPush('Agent response received — parsing listings…');
     const textBlocks = (data.content||[])
