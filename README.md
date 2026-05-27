@@ -26,7 +26,7 @@ Because industry is open, the sector toggles in the sidebar act as **search-emph
 
 **Frontend** — Single-file `index.html` (no build step, no framework dependencies beyond Google Fonts). Avila Phoenix navy & gold institutional aesthetic, Cormorant Garamond + Inter, "MH" crest.
 
-**Backend** — Cloudflare Worker (`worker.js`) deployed at `mh-scout.brian-wyss.workers.dev`. The Worker holds the Anthropic API key as an encrypted secret and forwards browser requests to `https://api.anthropic.com/v1/messages`. The browser never sees the key. A session-only API key field is also provided for direct browser calls.
+**Backend** — Cloudflare Worker (`worker.js`) deployed at `mh-scout.wyssbk.workers.dev`. The Worker holds the Anthropic API key as an encrypted secret and forwards browser requests to `https://api.anthropic.com/v1/messages`. The browser never sees the key. A session-only API key field is also provided for direct browser calls.
 
 **Agent** — `claude-sonnet-4-20250514` with the `web_search_20250305` tool enabled. The system prompt enforces Matthew's exact buy box, an Avila Phoenix institutional voice, and explicit guardrails.
 
@@ -78,7 +78,7 @@ Live URL: `https://<your-username>.github.io/matthewhill-deal-scout/`
    - **Variable name:** `ANTHROPIC_API_KEY`
    - **Value:** your `sk-ant-...` key
 5. Add your GitHub Pages origin to the `ALLOWED_ORIGINS` array in `worker.js` (top of file), then redeploy
-6. Verify with a browser GET to `https://mh-scout.brian-wyss.workers.dev` — should return a JSON health response
+6. Verify with a browser GET to `https://mh-scout.wyssbk.workers.dev` — should return a JSON health response
 
 ### 3. Test
 

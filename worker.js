@@ -11,7 +11,6 @@
 
 const ALLOWED_ORIGINS = [
   'https://brianwyss-acqnetwork.github.io',
-  'https://brianwyss-matthewhill.github.io',
   'http://localhost:8080'
 ];
 
